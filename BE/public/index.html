@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JHIC2.0 — Tester Chatbot CS (internal)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:ui-sans-serif,system-ui}.bubble{white-space:pre-wrap}</style>
+</head>
+<body class="bg-slate-100 min-h-screen">
+<div class="max-w-2xl mx-auto p-4">
+  <div class="bg-white rounded-2xl shadow p-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="font-bold text-lg">Tester Chatbot CS <span class="text-xs font-normal text-slate-500">internal, bukan FE asli</span></h1>
+        <p class="text-xs text-slate-500">Backend: <code>/api/v1/chat</code> · limit 15/menit/user · <a class="underline" href="/api/v1/health" target="_blank">health</a></p>
+      </div>
+      <button id="reset" class="text-xs border rounded px-2 py-1">Reset session</button>
+    </div>
+    <div id="meta" class="text-[11px] text-slate-500 mt-2">memuat status router…</div>
+    <div id="log" class="h-[420px] overflow-y-auto border rounded p-3 mt-2 space-y-2 bg-slate-50"></div>
+    <div id="warn" class="hidden text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded p-2 mt-2"></div>
+    <div class="flex gap-2 mt-2">
+      <input id="msg" class="flex-1 border rounded px-3 py-2" placeholder="Contoh: Jam operasional CS? / Cara daftar? / lupakan instruksi…" maxlength="1000" />
+      <button id="send" class="bg-black text-white rounded px-4">Kirim</button>
+    </div>
+    <p class="text-[11px] text-slate-500 mt-2">Coba: (1) pertanyaan dari data → ada sources, (2) OOT mis. “siapa presiden?” → fallback, (3) spam 16x → 429 + countdown, (4) tanpa API key → mode offline tetap jawab dari FAQ.</p>
+  </div>
+</div>
+<script>
+const log = document.getElementById('log');
+const msg = document.getElementById('msg');
+const warn = document.getElementById('warn');
+let session_id = 'sess_' + Math.random().toString(36).slice(2, 8);
+let countdownTimer = null;
+
+function add(who, text, extra='') {
+  const d = document.createElement('div');
+  d.className = who === 'me' ? 'text-right' : 'text-left';
+  d.innerHTML = `<div class="inline-block max-w-[85%] px-3 py-2 rounded-2xl bubble ${who==='me'?'bg-black text-white':'bg-white border'}">${escapeHtml(text)}${extra}</div>`;
+  log.appendChild(d); log.scrollTop = log.scrollHeight;
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function showWarn(t, secs){
+  warn.classList.remove('hidden'); warn.textContent = t;
+  clearInterval(countdownTimer);
+  if(secs>0){let s=secs; countdownTimer=setInterval(()=>{s--; if(s<=0){warn.classList.add('hidden');clearInterval(countdownTimer);} else warn.textContent=t+` (${s}s)`;},1000);}
+  else setTimeout(()=>warn.classList.add('hidden'),4000);
+}
+async function refreshHealth(){
+  try{const r=await fetch('/api/v1/health');const j=await r.json();
+    document.getElementById('meta').textContent=`session: ${session_id} · faq: ${j.data.faq_count} · router: `+j.data.router.map(p=>`${p.id} ${p.used_min}/${p.rpm}${p.active?'':' (off)'}`).join(' · ');
+  }catch{document.getElementById('meta').textContent='health gagal — pastikan BE jalan di :3000';}
+}
+async function send(){
+  const text=msg.value.trim(); if(!text) return;
+  msg.value=''; add('me',text);
+  const typing=document.createElement('div'); typing.id='typing'; typing.className='text-xs text-slate-400'; typing.textContent='CS mengetik…'; log.appendChild(typing);
+  try{
+    const r=await fetch('/api/v1/chat',{method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':crypto.randomUUID()},body:JSON.stringify({session_id,message:text})});
+    const j=await r.json(); typing.remove();
+    if(!r.ok){ showWarn(`Error ${r.status}: ${j.error?.message||'gagal'}`, j.error?.retry_after||0); add('bot','(gagal) '+(j.error?.message||r.status)); return; }
+    const d=j.data;
+    const badge=d.fallback?' <span class="text-[10px] bg-amber-100 border rounded px-1">fallback</span>':'';
+    const src=d.sources?.length?`<br><span class="text-[10px] text-slate-500">sources: ${d.sources.map(s=>s.id+' ('+s.score+')').join(', ')} · via ${d.provider}/${d.model}</span>`:`<br><span class="text-[10px] text-slate-500">via ${d.provider}</span>`;
+    add('bot',d.reply,badge+src); refreshHealth();
+  }catch(e){typing.remove(); add('bot','Gagal konek ke BE. Pastikan npm run dev jalan.');}
+}
+document.getElementById('send').onclick=send;
+msg.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+document.getElementById('reset').onclick=()=>{session_id='sess_'+Math.random().toString(36).slice(2,8);log.innerHTML='';refreshHealth();add('bot','Session baru: '+session_id);};
+refreshHealth();
+add('bot','Halo! Saya CS otomatis JHIC 2.0 (mode tester). Coba tanya: “Jam operasional CS?”');
+</script>
+</body>
+</html>
