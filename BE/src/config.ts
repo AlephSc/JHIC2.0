@@ -23,6 +23,16 @@ export const config = {
     url: process.env.APP_URL ?? 'http://localhost:3000',
     title: process.env.APP_TITLE ?? 'JHIC2.0 CS Chatbot Prototype',
   },
+  openrouter: {
+    baseUrl: process.env.OPENROUTER_BASE_URL ?? 'https://openrouter.ai/api/v1',
+    model: process.env.OPENROUTER_MODEL ?? 'meta-llama/llama-3.1-8b-instruct:free',
+    modelsTtlH: num('OPENROUTER_MODELS_TTL_H', 12),
+    prefer: (process.env.OPENROUTER_MODEL_PREFER ?? 'auto,nemotron,nvidia,qwen,llama,glm')
+      .split(',')
+      .map((s) => s.trim().toLowerCase())
+      .filter(Boolean),
+  },
+  adminToken: process.env.ADMIN_TOKEN ?? '',
 };
 
 export type ProviderDef = {

@@ -1,14 +1,15 @@
 openapi: 3.0.3
 info:
   title: JHIC2.0 CS Chatbot API
-  version: 1.0.0
-  description: Prototype backend chatbot ketat-data + mini-router. Source of truth kontrak FE-BE.
+  version: 1.1.0
+  description: Prototype backend chatbot ketat-data + mini-router + auto-fetch model gratis (free-only, TTL 12 jam).
 servers:
   - url: http://localhost:3000
 tags:
   - name: chat
   - name: knowledge
   - name: health
+  - name: models
 paths:
   /api/v1/chat:
     post:
@@ -109,7 +110,38 @@ paths:
   /api/v1/health:
     get:
       tags: [health]
-      summary: Status + faq_count + status router
+      summary: Status + faq_count + status router + status model gratis
       responses:
         '200': { description: OK }
+  /api/v1/models:
+    get:
+      tags: [models]
+      summary: Daftar model GRATIS OpenRouter (free-only) + cooldown + log switch
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string, description: Filter substring id model }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 50, minimum: 1, maximum: 200 }
+        - in: query
+          name: cursor
+          schema: { type: string, description: Opaque cursor dari next_cursor }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: object } } } }
+        '400': { description: Validasi gagal }
+  /api/v1/admin/models/refresh:
+    post:
+      tags: [models]
+      summary: Paksa fetch ulang /models (naturally idempotent, butuh X-Admin-Token)
+      parameters:
+        - in: header
+          name: X-Admin-Token
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+        '401': { description: Token salah }
+        '403': { description: ADMIN_TOKEN belum diisi }
+        '502': { description: Fetch gagal, cache lama dipakai }
 components: {}

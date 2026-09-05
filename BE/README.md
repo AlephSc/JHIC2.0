@@ -1,60 +1,60 @@
 # BE — Chatbot CS Prototype (JHIC2.0)
 
-> Scope: prototype backend saja. Frontend asli dikerjakan tim FE. Folder ini hanya berisi API + web tester internal `/test/`.
+> Scope: prototype backend saja (API + tester internal `/test/`). Frontend asli milik tim FE di `FE/`.
+> Aturan tim: `RULES.md` root. Kontrak mesin: `openapi.yaml`.
 
-## Struktur (di dalam `BE/`)
-
-```
-BE/
-  src/server.ts          # Fastify + /test + /api/v1
-  src/config.ts          # env + rantai provider
-  src/routes/chat.ts     # POST /api/v1/chat + POST /api/v1/conversations/:id/messages
-  src/routes/knowledge.ts# GET /api/v1/knowledge (cursor pagination)
-  src/routes/health.ts   # GET /api/v1/health
-  src/lib/retriever.ts   # Fuse.js top-K + threshold
-  src/lib/guard.ts       # smalltalk, injection guard, system prompt, offline reply
-  src/lib/miniRouter.ts  # Custom Provider + auto-fallback + RPM tracker
-  src/lib/rateLimit.ts   # 15/menit/user, 100/jam/user, 300/menit global
-  src/lib/sessions.ts    # history 6 pesan terakhir (memory)
-  src/data/faq.json      # 30 FAQ dummy (ganti tanpa coding)
-  public/index.html      # web tester internal (GET /test/)
-  openapi.yaml           # source of truth kontrak FE-BE
-```
-
-## Cara jalan (Windows cmd)
+## Mulai 3 langkah
 
 ```bash
 cd BE
-copy .env.example .env
+copy .env.example .env   # sekali saja; jangan commit .env asli
 npm install
 npm run dev
 ```
 
-Buka:
-
 - Tester: http://localhost:3000/test/
 - Health: http://localhost:3000/api/v1/health
-- OpenAPI: `openapi.yaml`
+- Tanpa API key tetap bisa demo (mode `local-offline`).
 
-Tanpa API key pun tetap bisa didemo (mode `local-offline` jawab dari FAQ).
+## Dokumentasi peran BE (`BE/docs/`)
 
-## Contoh curl
+| Dok | Isi |
+|---|---|
+| `docs/00-gambaran.md` | Peran BE, struktur folder, glosarium, aturan main |
+| `docs/01-install-setup.md` | Install, run dev/prod, cek cepat, troubleshooting |
+| `docs/02-konfigurasi.md` | Tabel `.env` lengkap + custom provider tanpa coding |
+| `docs/03-api.md` | Kontrak FE: chat, knowledge, health, error, contoh fetch/curl |
+| `docs/04-data-faq.md` | Format `faq.json`, cara tambah data, tuning threshold |
+| `docs/05-arsitektur.md` | Alur request, mini-router, guard, batasan prototype |
+| `docs/06-deploy.md` | Build, PM2, Nginx, Docker, checklist lomba, rollback |
+| `docs/07-tester.md` | Skenario uji 5 menit di `/test/` |
+| `docs/08-model-gratis.md` | Auto-fetch free OpenRouter, cooldown 10 mnt/6 jam, log switch |
+
+## Endpoint ringkas
+
+```
+POST /api/v1/chat                          # utama untuk FE {session_id, message}
+POST /api/v1/conversations/:id/messages    # kanonis resource-oriented
+GET  /api/v1/knowledge?q=&limit=&cursor=   # list FAQ paginated
+GET  /api/v1/health                        # status + faq_count + router
+GET  /test/                                # web tester internal (bukan produk)
+```
+
+Contoh:
 
 ```bash
 curl -X POST http://localhost:3000/api/v1/chat -H "Content-Type: application/json" -d "{\"session_id\":\"sess_demo01\",\"message\":\"Jam operasional CS?\"}"
-curl "http://localhost:3000/api/v1/knowledge?q=daftar&limit=5"
 ```
 
-## Tambah provider baru (tanpa coding)
+## Untuk tim FE (baca ini dulu)
 
-Edit `.env` atau set `ROUTER_CONFIG_JSON`:
+1. Base URL dev `http://localhost:3000`, kontrak penuh di `docs/03-api.md` + `openapi.yaml`.
+2. Kirim `Idempotency-Key` (uuid baru per pesan) + `X-User-Id` (saat login).
+3. Tangani `429` dengan countdown `retry_after`, tampilkan badge saat `fallback: true`.
+4. Ubah kontrak = usulan di `COMMUNICATION.md` root dulu sebelum coding.
 
-```json
-[{"id":"openrouter","baseUrl":"https://openrouter.ai/api/v1","apiKey":"...","model":"meta-llama/llama-3.1-8b-instruct:free","rpm":15,"priority":1}]
-```
+## Catatan GIT (penting)
 
-## Catatan RULES.md
-
-- Kerja hanya di `BE/`. Jangan campur ke `FE/`.
-- Jangan commit `.env` asli / `node_modules/` (lihat `.gitignore`).
-- Perubahan kontrak API wajib didiskusikan via `COMMUNICATION.md` + catat `CHANGELOGS.md` saat PR.
+- Kerja hanya di `BE/`. File ini + `docs/` boleh diubah di branch fitur BE.
+- File root (`CHANGELOGS.md`, `COMMUNICATION.md`) hanya lewat PR.
+- Jangan commit `.env`, `node_modules/`, `dist/` (lihat `BE/.gitignore`).

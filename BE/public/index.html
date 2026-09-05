@@ -18,6 +18,7 @@
       <button id="reset" class="text-xs border rounded px-2 py-1">Reset session</button>
     </div>
     <div id="meta" class="text-[11px] text-slate-500 mt-2">memuat status router…</div>
+    <div id="models" class="text-[11px] mt-2 border rounded p-2 bg-slate-50">memuat model gratis… <a class="underline" href="/api/v1/models" target="_blank">/models</a></div>
     <div id="log" class="h-[420px] overflow-y-auto border rounded p-3 mt-2 space-y-2 bg-slate-50"></div>
     <div id="warn" class="hidden text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded p-2 mt-2"></div>
     <div class="flex gap-2 mt-2">
@@ -50,6 +51,8 @@ function showWarn(t, secs){
 async function refreshHealth(){
   try{const r=await fetch('/api/v1/health');const j=await r.json();
     document.getElementById('meta').textContent=`session: ${session_id} · faq: ${j.data.faq_count} · router: `+j.data.router.map(p=>`${p.id} ${p.used_min}/${p.rpm}${p.active?'':' (off)'}`).join(' · ');
+    const om=j.data.openrouter_models||{};
+    document.getElementById('models').innerHTML=`model gratis aktif: <b>${escapeHtml(om.active||'-')}</b> · free: ${om.free_count??'?'} · status: ${om.model_status||'?'}${om.stale?' (stale)':''} · cooldown: ${om.cooldowns??0} · <a class="underline" href="/api/v1/models" target="_blank">detail+log switch</a>`;
   }catch{document.getElementById('meta').textContent='health gagal — pastikan BE jalan di :3000';}
 }
 async function send(){

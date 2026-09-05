@@ -6,6 +6,8 @@ import { config } from './config';
 import { healthRoutes } from './routes/health';
 import { knowledgeRoutes } from './routes/knowledge';
 import { chatRoutes } from './routes/chat';
+import { modelsRoutes } from './routes/models';
+import { startModelsAutoRefresh } from './lib/openrouterModels';
 
 export async function buildApp() {
   const app = Fastify({ logger: true, trustProxy: true });
@@ -34,6 +36,7 @@ export async function buildApp() {
       await v1.register(healthRoutes);
       await v1.register(knowledgeRoutes);
       await v1.register(chatRoutes);
+      await v1.register(modelsRoutes);
     },
     { prefix: '/api/v1' },
   );
@@ -48,7 +51,11 @@ export async function buildApp() {
 
 if (require.main === module) {
   buildApp()
-    .then((app) => app.listen({ port: config.port, host: config.host }))
+    .then((app) => {
+      startModelsAutoRefresh();
+      app.log.info('openrouter free-models auto-fetch aktif (TTL 12 jam, free-only)');
+      return app.listen({ port: config.port, host: config.host });
+    })
     .then((addr) => console.log(`BE chatbot listening on ${addr} | tester: /test/`))
     .catch((err) => {
       console.error(err);
