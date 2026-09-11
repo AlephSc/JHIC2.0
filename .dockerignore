@@ -1,0 +1,11 @@
+# Docker ignore — sinkron dengan .gitignore (Figma tidak ikut image)
+FE/Figma/
+**/Figma/
+node_modules/
+dist/
+build/
+.git/
+.env
+BE/.cache/
+*.log
+coverage/

@@ -1,0 +1,11 @@
+// Salin menjadi config.js di host bila perlu (jangan commit rahasia).
+window.__APP_CONFIG__ = {
+  beProtocol: "http",
+  beHost: "localhost",
+  bePort: "3000",
+  beBasePath: "/api/v1",
+  cdnBaseUrl: "https://ganti-dengan-imagekit-atau-cloudinary",
+  waNumber: "085649400339",
+  waEmail: "smktelkomdujbg@gmail.com",
+  appVersion: "L0-full"
+};
