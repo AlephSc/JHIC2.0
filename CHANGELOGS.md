@@ -25,6 +25,13 @@
 
 ## Riwayat
 
+## [2026-09-11] — FE resilient foundation (Vite statis + config IP/port + fallback)
+- **Kategori:** Added
+- **Area:** FE
+- **Deskripsi:** Scaffold FE Vite+React+TS+Tailwind (6 route), config runtime IP/port terpisah tanpa rebuild, CdnImage fallback + SW, outbox PPDB ANTRE- + WA manual, blacklist FE/Figma, guard CDN, workflow GH Pages L2. Build/typecheck hijau.
+- **Branch/PR:** `feat/fe-resilient-foundation` / #NN
+- **Penulis:** @moh-limo
+
 ### Contoh (hapus setelah entri asli pertama masuk)
 
 ## [2026-09-04] — Tambah halaman login FE

@@ -31,6 +31,14 @@
 
 <!-- Tambahkan pertanyaan baru di bawah baris ini (terbaru paling atas). -->
 
+### Q-002 — Kunci arsitektur FE resilient L0/L1/L2 + CDN + config IP
+- **Tanggal:** 2026-09-11
+- **Penanya:** @moh-limo
+- **Status:** Open
+- **Pertanyaan:** Setuju? Framework Vite statis 1 artefak (L0/L1/L2), CDN publik ImageKit/Cloudinary + berkas PPDB privat, config IP/port runtime `config.js`, outbox ANTRE- + WA 085649400339, blacklist FE/Figma. Detail: `Session/2026-09-11-fe-resilient-foundation.md`.
+- **Konteks:** Branch `feat/fe-resilient-foundation`, 33 Figma sudah dibaca, BE masih chatbot saja (`BE/openapi.yaml`).
+- **Jawaban:** -
+
 ### Q-001 — Contoh: kontrak API auth seperti apa?
 - **Tanggal:** 2026-09-04
 - **Penanya:** @contoh

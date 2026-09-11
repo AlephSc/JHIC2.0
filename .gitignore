@@ -1,0 +1,28 @@
+# JHIC2.0 root ignore — JANGAN commit file di bawah ini (lihat RULES.md 2.5)
+# Referensi desain — tidak boleh ke repo / CDN / build
+FE/Figma/
+**/Figma/
+*.psd
+*.fig
+
+# Secret & env asli
+.env
+*.env.local
+
+# Dependencies & build
+node_modules/
+dist/
+build/
+out/
+.cache/
+coverage/
+*.log
+
+# BE cache (model OpenRouter + switches — lihat BE/docs/08-model-gratis.md)
+BE/.cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

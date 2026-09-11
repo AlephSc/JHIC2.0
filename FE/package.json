@@ -1,0 +1,32 @@
+{
+  "name": "jhic2-fe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FE SMK Telekomunikasi Darul Ulum — Vite React statis resilient (L0/L1/L2)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173 --host",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173 --host",
+    "typecheck": "tsc --noEmit",
+    "cdn:upload": "node scripts/cdn-upload.mjs --dry-run"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.6.3",
+    "vite": "^6.2.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
