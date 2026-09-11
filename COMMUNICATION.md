@@ -34,10 +34,10 @@
 ### Q-002 — Kunci arsitektur FE resilient L0/L1/L2 + CDN + config IP
 - **Tanggal:** 2026-09-11
 - **Penanya:** @moh-limo
-- **Status:** Open
+- **Status:** Done
 - **Pertanyaan:** Setuju? Framework Vite statis 1 artefak (L0/L1/L2), CDN publik ImageKit/Cloudinary + berkas PPDB privat, config IP/port runtime `config.js`, outbox ANTRE- + WA 085649400339, blacklist FE/Figma. Detail: `Session/2026-09-11-fe-resilient-foundation.md`.
 - **Konteks:** Branch `feat/fe-resilient-foundation`, 33 Figma sudah dibaca, BE masih chatbot saja (`BE/openapi.yaml`).
-- **Jawaban:** -
+- **Jawaban:** (2026-09-11, @moh-limo) Disetujui semua: Vite+React statis, ImageKit/Cloudinary publik + PPDB privat, `config.js` IP/port terpisah, outbox ANTRE- + WA manual. Sudah dieksekusi di `feat/fe-resilient-foundation` dan masuk `main` (`996c374`).
 
 ### Q-001 — Contoh: kontrak API auth seperti apa?
 - **Tanggal:** 2026-09-04
@@ -100,6 +100,17 @@
 
 <!-- Tambahkan usulan baru di bawah baris ini (terbaru paling atas). -->
 
+### C-002 — Fondasi FE resilient (Vite statis + L0/L1/L2 + blacklist Figma)
+- **Tanggal:** 2026-09-11
+- **Pengusul:** @moh-limo
+- **Status:** Done
+- **Jenis:** Non-breaking (folder baru `FE/*`, root `.gitignore`/`.dockerignore`, workflow GH Pages; `BE/` tidak tersentuh)
+- **Area terdampak:** FE / Docs / Session
+- **Deskripsi perubahan:** Scaffold FE Vite+React+TS+Tailwind (6 route), config runtime IP/port `public/config.js`, `CdnImage` fallback + SW, outbox PPDB `ANTRE-` + WA manual, blacklist `FE/Figma/`, guard `cdn:upload`, workflow deploy GH Pages L2.
+- **Alasan:** FE kosong (hanya `Figma/`), butuh fondasi anti-down sebelum bangun 33 halaman; 1 artefak statis untuk L0/L1/L2.
+- **Alternatif yang dipertimbangkan:** Next.js SSR (ditolak: L2 GitHub Pages tidak bisa SSR → divergensi build).
+- **Keputusan:** (2026-09-11, @moh-limo) Disetujui, dikerjakan di `feat/fe-resilient-foundation`, dicatat di `CHANGELOGS.md`, masuk `main` via squash merge `996c374`.
+
 ### C-001 — Contoh: ganti format respons error BE
 - **Tanggal:** 2026-09-04
 - **Pengusul:** @contoh
@@ -119,4 +130,6 @@ Catat keputusan final yang sudah disepakati agar mudah dicari (opsional tapi dia
 
 | Tanggal | Keputusan | Penanggung jawab |
 |---------|-----------|------------------|
+| 2026-09-11 | Arsitektur FE: Vite statis 1 artefak L0/L1/L2; CDN publik ImageKit/Cloudinary, berkas PPDB privat; `config.js` IP/port terpisah | @moh-limo |
+| 2026-09-11 | Pengecualian darurat RULES 2.4: `feat/fe-resilient-foundation` masuk `main` tanpa reviewer (`996c374`), branch dihapus — agar tim cukup `pull main` | @moh-limo |
 | 2026-09-04 | Contoh: format error BE `{code, message, details}` | @contoh |

@@ -25,6 +25,13 @@
 
 ## Riwayat
 
+## [2026-09-11] — Merge fondasi FE ke main + lengkapi log komunikasi
+- **Kategori:** Changed
+- **Area:** Docs / Session
+- **Deskripsi:** Q-002 → Done, tambah C-002 (Done) + 2 baris Log Keputusan; merge darurat `feat/fe-resilient-foundation` ke `main` (`996c374`) tanpa reviewer + hapus branch (pengecualian RULES 2.4 atas permintaan pemilik agar tim cukup `pull main`).
+- **Branch/PR:** `main` langsung (pengecualian darurat, tanpa nomor PR)
+- **Penulis:** @moh-limo
+
 ## [2026-09-11] — FE resilient foundation (Vite statis + config IP/port + fallback)
 - **Kategori:** Added
 - **Area:** FE
