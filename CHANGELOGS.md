@@ -25,6 +25,13 @@
 
 ## Riwayat
 
+## [2026-09-12] — Replika Figma penuh (25 route)
+- **Kategori:** Added
+- **Area:** FE / Session
+- **Deskripsi:** Replika 33 PNG jadi 25 route (landing, jurusan, fasilitas, ekstra, produk, berita+detail, BKK+detail, PPDB landing/auth/wizard/dashboard/tiket/status/lulus, quiz 3 layar, profil, alumni) + navbar pill & footer Figma. Foto masih placeholder gradien. Build/typecheck hijau.
+- **Branch/PR:** `feat/fe-figma-replica` → `main` (squash, pengecualian darurat)
+- **Penulis:** @moh-limo
+
 ## [2026-09-11] — Merge fondasi FE ke main + lengkapi log komunikasi
 - **Kategori:** Changed
 - **Area:** Docs / Session
