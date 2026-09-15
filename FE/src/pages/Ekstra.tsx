@@ -55,7 +55,3 @@ export default function Ekstra() {
     </div>
   );
 }
-
-export function BtnGaris(): null {
-  return null;
-}

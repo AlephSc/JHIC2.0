@@ -115,7 +115,3 @@ export default function Bkk() {
     </div>
   );
 }
-
-export function BtnGaris(): null {
-  return null;
-}

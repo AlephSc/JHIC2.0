@@ -11,7 +11,7 @@ export default function Fasilitas() {
           <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Sarana Belajar yang Mendukung Kompetensi Siswa</h1>
           <p className="text-sm text-muted mt-4 leading-relaxed">SMK Telekomunikasi Darul Ulum menyediakan berbagai fasilitas pembelajaran yang dirancang untuk menunjang praktik, kreativitas, kolaborasi, dan kesiapan siswa menghadapi dunia industri.</p>
           <div className="mt-5 flex gap-3">
-            <BtnDark href-scroll="fasilitas" />
+            <BtnPrimer onClick={() => document.getElementById('fasilitas')?.scrollIntoView({ behavior: 'smooth' })}>Lihat Fasilitas ↓</BtnPrimer>
             <BtnOutline to="/ppdb">Hubungi Sekolah</BtnOutline>
           </div>
         </div>
@@ -32,8 +32,4 @@ export default function Fasilitas() {
       </section>
     </div>
   );
-}
-
-function BtnDark(_: { href?: string; scroll?: string }) {
-  return <BtnPrimer onClick={() => document.getElementById('fasilitas')?.scrollIntoView({ behavior: 'smooth' })}>Lihat Fasilitas ↓</BtnPrimer>;
 }
