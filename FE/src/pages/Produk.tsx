@@ -19,7 +19,7 @@ export default function Produk() {
         <div>
           <Tag>PRODUK UNGGULAN SEKOLAH</Tag>
           <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Karya Siswa, Solusi Nyata</h1>
-          <p className="text-sm text-muted mt-4 leading-relaxed">Melalui unit produksi sekolah, siswa tidak hanya belajar secara teori tetapi juga menghasilkan karya dan layanan yang dapat dimanfaatkan masyarakat maupun mitra industri.</p>
+          <p className="text-sm text-body-text/80 mt-4 leading-relaxed">Melalui unit produksi sekolah, siswa tidak hanya belajar secara teori tetapi juga menghasilkan karya dan layanan yang dapat dimanfaatkan masyarakat maupun mitra industri.</p>
           <div className="mt-5"><BtnPrimer onClick={() => document.getElementById('produk')?.scrollIntoView({ behavior: 'smooth' })}>Jelajahi Produk →</BtnPrimer></div>
         </div>
         <PhotoBlob label="Foto siswa perakitan produk" ratio="h-64" tone={1} />
@@ -36,7 +36,7 @@ export default function Produk() {
                 <span className="text-[10px] font-bold uppercase tracking-widest text-brand bg-blue-badge rounded-full px-2.5 py-1">{p.kat}</span>
               </div>
               <p className="font-head font-bold mt-4">{p.t}</p>
-              <p className="text-xs text-muted mt-1.5 leading-relaxed">{p.d}</p>
+              <p className="text-xs text-body-text/80 mt-1.5 leading-relaxed">{p.d}</p>
               <a href="#/ppdb" className="text-xs font-bold text-brand mt-3 inline-block">Lihat Detail →</a>
             </Card>
           ))}
@@ -49,7 +49,7 @@ export default function Produk() {
         <div>
           <Tag>PRODUK PILIHAN</Tag>
           <h2 className="text-2xl font-extrabold mt-3">Website & Sistem Informasi</h2>
-          <ul className="mt-4 space-y-2 text-sm text-navy-text">
+          <ul className="mt-4 space-y-2 text-sm text-navy">
             {['Dibuat melalui pembelajaran berbasis praktik', 'Standar kualitas industri', 'Didampingi guru produktif berpengalaman'].map((x) => (
               <li key={x} className="flex gap-2"><span className="text-brand font-bold">✓</span>{x}</li>
             ))}
@@ -66,7 +66,7 @@ export default function Produk() {
             <Card key={n} className="p-6">
               <p className="text-2xl font-extrabold text-brand">{n}</p>
               <p className="font-head font-bold mt-2">{t}</p>
-              <p className="text-xs text-muted mt-1.5">{d}</p>
+              <p className="text-xs text-body-text/80 mt-1.5">{d}</p>
             </Card>
           ))}
         </div>
@@ -92,7 +92,7 @@ export default function Produk() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+      <section className="bg-navy text-white rounded-[2.5rem] px-8 py-14 text-center">
         <h2 className="text-2xl font-extrabold">Punya Ide atau Kebutuhan Project?</h2>
         <p className="text-sm text-white/60 mt-2">Unit produksi kami siap membantu kebutuhan digital dan kreatif Anda.</p>
         <div className="mt-6 flex flex-wrap gap-3 justify-center">

@@ -9,7 +9,7 @@ export default function Ppdb() {
         <div>
           <Tag>Penerimaan Peserta Didik Baru</Tag>
           <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Mulai langkahmu bersama <span className="text-brand">PPDB 2026/2027</span></h1>
-          <p className="text-sm text-muted mt-4 leading-relaxed">Bergabunglah dengan SMK Telekomunikasi Darul Ulum untuk menjadi generasi yang kompeten, berkarakter, dan siap menghadapi dunia industri digital.</p>
+          <p className="text-sm text-body-text/80 mt-4 leading-relaxed">Bergabunglah dengan SMK Telekomunikasi Darul Ulum untuk menjadi generasi yang kompeten, berkarakter, dan siap menghadapi dunia industri digital.</p>
           <div className="mt-6 flex gap-3">
             <BtnPrimer to="/register">Mulai Pendaftaran →</BtnPrimer>
             <BtnOutline onClick={() => document.getElementById('syarat')?.scrollIntoView({ behavior: 'smooth' })}>Lihat Persyaratan</BtnOutline>
@@ -25,18 +25,18 @@ export default function Ppdb() {
             <Card key={t} className="p-6">
               <IconBox>{ic}</IconBox>
               <p className="font-head font-bold mt-4">{t}</p>
-              <p className="text-xs text-muted mt-1.5 leading-relaxed">{d}</p>
+              <p className="text-xs text-body-text/80 mt-1.5 leading-relaxed">{d}</p>
             </Card>
           ))}
         </div>
       </section>
 
-      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+      <section className="bg-navy text-white rounded-[2.5rem] px-8 py-14 text-center">
         <h2 className="text-2xl font-extrabold">Alur Pendaftaran Singkat</h2>
         <div className="grid gap-4 sm:grid-cols-4 mt-8 text-sm">
           {[['01', 'Buat Akun'], ['02', 'Isi Data Diri'], ['03', 'Upload Berkas'], ['04', 'Cek Status']].map(([n, t]) => (
-            <div key={n} className="bg-navy-800 rounded-2xl p-5">
-              <p className="text-2xl font-extrabold text-sky-400">{n}</p>
+            <div key={n} className="bg-[#1b2c46] rounded-2xl p-5">
+              <p className="text-2xl font-extrabold text-[#7db3e8]">{n}</p>
               <p className="font-bold mt-2">{t}</p>
             </div>
           ))}

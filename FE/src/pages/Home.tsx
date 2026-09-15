@@ -15,12 +15,12 @@ export default function Home() {
   return (
     <div className="space-y-20 -mt-2">
       {/* HERO — navy + blob + foto */}
-      <section className="relative bg-navy-950 text-white px-8 pt-16 pb-20 grid gap-8 md:grid-cols-[45fr_55fr] items-center overflow-hidden">
+      <section className="relative bg-navy text-white px-8 pt-16 pb-20 grid gap-8 md:grid-cols-[45fr_55fr] items-center overflow-hidden">
         <div className="blob w-96 h-96 -left-24 -top-24 opacity-20" />
         <div className="blob w-72 h-72 right-1/3 -bottom-20 opacity-15" />
         <div className="relative z-10">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-300">SMK Telekomunikasi Darul Ulum</p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] mt-3">Mempercepat Generasi<br />Ungul Berbasis<br /><span className="text-sky-400">Teknologi</span></h1>
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7db3e8]">SMK Telekomunikasi Darul Ulum</p>
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] mt-3">Mempercepat Generasi<br />Ungul Berbasis<br /><span className="text-[#7db3e8]">Teknologi</span></h1>
           <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-md">Membangun kompetensi nyata, karakter mulia, dan kesiapan menghadapi tantangan dunia digital bersama kurikulum standar industri.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <BtnPrimer to="/ppdb">DAFTAR SEKARANG →</BtnPrimer>
@@ -39,7 +39,7 @@ export default function Home() {
         <div>
           <Tag>SAMBUTAN</Tag>
           <h2 className="text-2xl font-extrabold mt-3">KEPALA SEKOLAH<br /><span className="text-brand">SMK TELEKOMUNIKASI DARUL ULUM</span></h2>
-          <p className="mt-4 text-sm text-muted leading-relaxed">"Selamat datang di SMK Telekomunikasi Darul Ulum. Kami berkomitmen menciptakan lulusan yang unggul, kreatif, inovatif, dan berdaya saing menghadapi dunia kerja. Semoga menjadi pendidikan yang mencetak generasi yang siap menghadapi masa depan."</p>
+          <p className="mt-4 text-sm text-body-text/80 leading-relaxed">"Selamat datang di SMK Telekomunikasi Darul Ulum. Kami berkomitmen menciptakan lulusan yang unggul, kreatif, inovatif, dan berdaya saing menghadapi dunia kerja. Semoga menjadi pendidikan yang mencetak generasi yang siap menghadapi masa depan."</p>
         </div>
       </section>
 
@@ -48,7 +48,7 @@ export default function Home() {
         <div>
           <Tag>VIDEO PROFIL SEKOLAH</Tag>
           <h2 className="text-3xl font-extrabold mt-3">Lihat Lebih Dekat Kehidupan di SMK Telekomunikasi Darul Ulum</h2>
-          <p className="text-sm text-muted mt-3 leading-relaxed">Jelajahi lingkungan belajar interaktif, fasilitas modern, dan berbagai aktivitas yang membentuk karakter serta kompetensi siswa kami.</p>
+          <p className="text-sm text-body-text/80 mt-3 leading-relaxed">Jelajahi lingkungan belajar interaktif, fasilitas modern, dan berbagai aktivitas yang membentuk karakter serta kompetensi siswa kami.</p>
         </div>
         <div className="relative">
           <div className="blob w-64 h-64 -right-8 -bottom-8" />
@@ -66,16 +66,16 @@ export default function Home() {
         <div>
           <Tag>PROGRAM KEAHLIAN</Tag>
           <h2 className="text-3xl font-extrabold mt-3">Membentuk Kompetensi Nyata, Siap untuk Dunia Industri</h2>
-          <p className="text-sm text-muted mt-3">Program keahlian kami dirancang sesuai standar industri untuk mencetak lulusan yang kompeten, inovatif, dan siap terjun ke dunia wirausaha.</p>
+          <p className="text-sm text-body-text/80 mt-3">Program keahlian kami dirancang sesuai standar industri untuk mencetak lulusan yang kompeten, inovatif, dan siap terjun ke dunia wirausaha.</p>
           <div className="flex gap-2 mt-5">
             {['PF', 'TKJ', 'RPL', 'DKV'].map((t) => (
-              <button key={t} onClick={() => setTab(t)} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${tab === t ? 'bg-navy-950 text-white' : 'bg-white border border-line text-navy-text'}`}>{t}</button>
+              <button key={t} onClick={() => setTab(t)} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${tab === t ? 'bg-navy text-white' : 'bg-white border border-line-soft text-navy'}`}>{t}</button>
             ))}
           </div>
           <Card className="p-5 mt-4">
             <p className="font-head font-bold">{tab === 'PF' ? 'Perfilman / Produksi Film' : tab}</p>
-            <p className="text-xs text-muted mt-2 leading-relaxed">{tabDesc[tab]}</p>
-            <ul className="grid grid-cols-2 gap-1.5 mt-3 text-[11px] text-navy-text">
+            <p className="text-xs text-body-text/80 mt-2 leading-relaxed">{tabDesc[tab]}</p>
+            <ul className="grid grid-cols-2 gap-1.5 mt-3 text-[11px] text-navy">
               {tabDesc[tab].split(', ').map((x) => <li key={x} className="flex gap-1.5"><span className="text-brand">✓</span>{x}</li>)}
             </ul>
             <div className="mt-4"><BtnPrimer to="/jurusan">Lihat Detail →</BtnPrimer></div>
@@ -88,7 +88,7 @@ export default function Home() {
       <section className="grid gap-8 md:grid-cols-[1fr_2fr] items-center">
         <div>
           <h2 className="text-2xl font-extrabold">Bersama Ribuan Siswa, Membangun Masa Depan yang Gemilang</h2>
-          <p className="text-sm text-muted mt-3">Kami berkomitmen mencetak ribuan lulusan yang kompeten, berkarakter, dan siap bersaing di tingkat nasional maupun global.</p>
+          <p className="text-sm text-body-text/80 mt-3">Kami berkomitmen mencetak ribuan lulusan yang kompeten, berkarakter, dan siap bersaing di tingkat nasional maupun global.</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatCard n="1.200+" l="Siswa Aktif" />
@@ -102,8 +102,8 @@ export default function Home() {
       <section className="text-center">
         <Tag>MITRA INDUSTRI</Tag>
         <h2 className="text-3xl font-extrabold mt-3">Trusted by Industry Leaders</h2>
-        <p className="text-sm text-muted mt-2">Kurikulum kami didukung mitra agar lulusan siap kerja.</p>
-        <div className="mt-6 bg-white rounded-3xl border border-line p-6 grid grid-cols-3 sm:grid-cols-4 gap-4 text-sm font-bold text-gray-500">
+        <p className="text-sm text-body-text/80 mt-2">Kurikulum kami didukung mitra agar lulusan siap kerja.</p>
+        <div className="mt-6 bg-white rounded-3xl border border-line-soft p-6 grid grid-cols-3 sm:grid-cols-4 gap-4 text-sm font-bold text-gray-500">
           {LOGO_MITRA.map((l) => <span key={l} className="bg-gray-100 rounded-xl py-3.5">{l}</span>)}
         </div>
       </section>
@@ -124,7 +124,7 @@ export default function Home() {
               <Tag>PRESTASI</Tag>
               <p className="text-[11px] text-gray-400 mt-2">12 Agustus 2026</p>
               <p className="font-head font-extrabold mt-1">Siswa SMK Telekomunikasi Darul Ulum Raih Juara Kompetisi Teknologi Nasional</p>
-              <p className="text-xs text-muted mt-2 leading-relaxed">Prestasi membanggakan kembali diraih tim robotika sekolah tingkat nasional…</p>
+              <p className="text-xs text-body-text/80 mt-2 leading-relaxed">Prestasi membanggakan kembali diraih tim robotika sekolah tingkat nasional…</p>
               <div className="mt-4"><BtnPrimer to="/berita/pensla-fest">Baca Selengkapnya</BtnPrimer></div>
             </div>
           </Card>
@@ -151,7 +151,7 @@ export default function Home() {
           {TESTIMONI.map((t, i) => (
             <Card key={t.nama} className="p-6">
               <div className="text-amber-400 tracking-widest">★★★★★</div>
-              <p className="text-sm text-muted mt-3 leading-relaxed">"{t.teks}"</p>
+              <p className="text-sm text-body-text/80 mt-3 leading-relaxed">"{t.teks}"</p>
               <div className="flex items-center gap-3 mt-4">
                 <Photo label={t.nama} ratio="h-11 w-11" className="rounded-full" tone={i} />
                 <div>
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* CTA PENUTUP — navy */}
-      <section className="bg-navy-950 rounded-[2.5rem] px-8 py-16 text-center text-white">
+      <section className="bg-navy rounded-[2.5rem] px-8 py-16 text-center text-white">
         <h2 className="text-3xl font-extrabold">Siap Bergabung dengan Generasi Unggul?</h2>
         <p className="text-sm text-white/60 mt-3 max-w-xl mx-auto">Daftarkan dirimu sekarang dan mulai perjalanan menjadi profesional teknologi masa depan.</p>
         <div className="mt-6 flex flex-wrap gap-3 justify-center">

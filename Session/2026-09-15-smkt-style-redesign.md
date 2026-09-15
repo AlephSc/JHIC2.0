@@ -7,6 +7,10 @@ Kelanjutan `2026-09-12-fe-figma-replica.md`. Branch `feat/fe-smkt-style`.
 aksen biru #2563EB untuk semua CTA, radius besar 16-24px, navbar pill, blob dekoratif,
 font Plus Jakarta Sans (judul) + Inter (body), tanpa shadow tebal.
 
+Tambahan 2026-09-15 (sore): disamakan ke `Example/index.tsx` sebagai sumber kebenaran final —
+font Lexend, menu #003366, link aktif #0059bb/#2c57ae, CTA #2669c0, FAB chatbot #215a9f,
+teks body #44474d, border #c5c6cd, footer 4 kolom persis struktur Example.
+
 ## Yang diubah
 - `FE/src/index.css` — design tokens lengkap (navy/blue/cream/gray/success) + `@theme` Tailwind
   (navy-950/900/800, brand, blue-soft, blue-badge, cream, line, muted, font-head/font-body) + class `.blob` blur.

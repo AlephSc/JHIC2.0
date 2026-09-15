@@ -15,7 +15,7 @@ export default function Alumni() {
         <div>
           <Tag>ALUMNI</Tag>
           <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Dari Sekolah,<br />Melangkah Lebih Jauh</h1>
-          <p className="text-sm text-muted mt-4 leading-relaxed">Ribuan alumni kami tersebar di industri dan universitas ternama. Jejak mereka bukti nyata kualitas pendidikan di SMK Telekomunikasi Darul Ulum.</p>
+          <p className="text-sm text-body-text/80 mt-4 leading-relaxed">Ribuan alumni kami tersebar di industri dan universitas ternama. Jejak mereka bukti nyata kualitas pendidikan di SMK Telekomunikasi Darul Ulum.</p>
           <p className="inline-block bg-blue-badge text-brand text-xs font-bold rounded-full px-4 py-2 mt-4">98% Terserap Industri & Universitas</p>
           <div className="mt-5 flex gap-3">
             <BtnDark to="/bkk">Lihat Cerita Alumni →</BtnDark>
@@ -31,7 +31,7 @@ export default function Alumni() {
         <div>
           <Tag>Alumni Highlight</Tag>
           <p className="text-xl font-head font-bold leading-snug mt-4">"Pengalaman belajar dan project nyata di sekolah membuat saya percaya diri berkarier di tech startup sejak semester pertama kuliah."</p>
-          <p className="text-sm font-bold mt-4">Alya N. <span className="text-muted font-normal">• RPL 2024 — Frontend Developer di Tech Startup</span></p>
+          <p className="text-sm font-bold mt-4">Alya N. <span className="text-body-text/80 font-normal">• RPL 2024 — Frontend Developer di Tech Startup</span></p>
         </div>
       </section>
 
@@ -40,7 +40,7 @@ export default function Alumni() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl font-extrabold">Jejak Karier dan Karya Mereka</h2>
-            <p className="text-sm text-muted mt-1">Kisah alumni di berbagai bidang industri.</p>
+            <p className="text-sm text-body-text/80 mt-1">Kisah alumni di berbagai bidang industri.</p>
           </div>
           <PillFilter options={['Semua', 'RPL', 'TKJ', 'DKV', 'PF']} value="Semua" onChange={() => undefined} />
         </div>
@@ -54,7 +54,7 @@ export default function Alumni() {
               <div className="p-4">
                 <p className="font-head font-bold text-sm">{a.n}</p>
                 <p className="text-[11px] text-brand font-bold uppercase tracking-wide mt-0.5">{a.r}</p>
-                <p className="text-[11px] text-muted mt-2 leading-relaxed">"{a.q}"</p>
+                <p className="text-[11px] text-body-text/80 mt-2 leading-relaxed">"{a.q}"</p>
               </div>
             </Card>
           ))}
@@ -69,14 +69,14 @@ export default function Alumni() {
             <Card key={t} className="p-6 text-center">
               <IconBox>{ic}</IconBox>
               <p className="font-head font-bold mt-4">{t}</p>
-              <p className="text-xs text-muted mt-1.5 leading-relaxed">{d}</p>
+              <p className="text-xs text-body-text/80 mt-1.5 leading-relaxed">{d}</p>
             </Card>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+      <section className="bg-navy text-white rounded-[2.5rem] px-8 py-14 text-center">
         <h2 className="text-2xl font-extrabold">Kamu Alumni SMK Telekomunikasi Darul Ulum?</h2>
         <p className="text-sm text-white/60 mt-2">Mari tetap terhubung dan berbagi kesempatan dengan adik kelas.</p>
         <div className="mt-6"><BtnPrimer to="/bkk">Hubungi Kami →</BtnPrimer></div>

@@ -18,8 +18,8 @@ export default function Auth({ mode }: { mode: 'login' | 'register' }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto rounded-[2rem] overflow-hidden grid md:grid-cols-2 shadow-xl shadow-navy-950/10">
-      <div className="bg-navy-950 text-white p-10 flex flex-col justify-center relative overflow-hidden">
+    <div className="max-w-4xl mx-auto rounded-[2rem] overflow-hidden grid md:grid-cols-2 shadow-xl shadow-navy/10">
+      <div className="bg-navy text-white p-10 flex flex-col justify-center relative overflow-hidden">
         <div className="blob w-64 h-64 -left-16 -bottom-16 opacity-20" />
         <div className="relative z-10 text-center">
           <span className="w-12 h-12 rounded-full bg-white/10 text-white font-extrabold flex items-center justify-center mx-auto">DU</span>
@@ -34,7 +34,7 @@ export default function Auth({ mode }: { mode: 'login' | 'register' }) {
       <div className="bg-white p-8 sm:p-10">
         <p className="font-head font-extrabold text-sm">SMK <span className="text-brand">TELEKOMUNIKASI</span> DARUL ULUM</p>
         <h2 className="font-head font-extrabold text-2xl mt-6">{login ? 'Masuk ke Akun' : 'Daftar Akun Baru'}</h2>
-        <p className="text-xs text-muted mt-1">{login ? 'Masuk menggunakan akun yang telah Anda daftarkan untuk melanjutkan pendaftaran.' : 'Daftar akun baru untuk mengakses formulir pendaftaran PPDB.'}</p>
+        <p className="text-xs text-body-text/80 mt-1">{login ? 'Masuk menggunakan akun yang telah Anda daftarkan untuk melanjutkan pendaftaran.' : 'Daftar akun baru untuk mengakses formulir pendaftaran PPDB.'}</p>
         <form onSubmit={submit} className="mt-6 space-y-4">
           <label className="block text-xs font-bold">
             Email
@@ -61,16 +61,16 @@ export default function Auth({ mode }: { mode: 'login' | 'register' }) {
             </label>
           )}
           <div className="flex justify-between items-center text-xs">
-            <label className="flex gap-1.5 items-center text-muted"><input type="checkbox" /> Ingat saya</label>
+            <label className="flex gap-1.5 items-center text-body-text/80"><input type="checkbox" /> Ingat saya</label>
             {login && <a href="#/login" className="text-brand font-bold">Lupa kata sandi?</a>}
           </div>
           {err && <p className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl p-3">{err}</p>}
-          <button type="submit" className="w-full bg-navy-950 hover:bg-navy-900 text-white rounded-xl py-3.5 text-sm font-bold transition-colors">{login ? 'Login' : 'Register'}</button>
+          <button type="submit" className="w-full bg-navy hover:bg-brand-hover text-white rounded-xl py-3.5 text-sm font-bold transition-colors">{login ? 'Login' : 'Register'}</button>
         </form>
         <p className="text-xs text-center mt-5">
           {login ? <>Belum memiliki akun? <a href="#/register" className="text-brand font-bold">Buat Akun</a></> : <>Sudah punya akun? <a href="#/login" className="text-brand font-bold">Masuk di sini</a></>}
         </p>
-        <p className="text-[11px] text-gray-400 mt-6 border-t border-line pt-4 flex items-start gap-1.5"><span>ⓘ</span> Akun diperlukan sebelum Anda dapat mengakses formulir pendaftaran PPDB.</p>
+        <p className="text-[11px] text-gray-400 mt-6 border-t border-line-soft pt-4 flex items-start gap-1.5"><span>ⓘ</span> Akun diperlukan sebelum Anda dapat mengakses formulir pendaftaran PPDB.</p>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@
 ## [2026-09-15] — Redesign FE sesuai SMKT_Style guide
 - **Kategori:** Changed
 - **Area:** FE / Session
-- **Deskripsi:** Terapkan Skills/SMKT_Style.md "Modern Institutional Navy" ke 25 route: token warna krem/navy/biru, font Plus Jakarta Sans+Inter, navbar pill dropdown, blob dekoratif, CTA banner navy. Perbaikan fungsional: filter Berita/Ekstra/Produk, kompetensi per jurusan, validasi wizard PPDB, scoring quiz, Auth validasi.
+- **Deskripsi:** Terapkan Skills/SMKT_Style.md "Modern Institutional Navy" ke 25 route + samakan ke Example/index.tsx (Lexend, #003366/#0059bb/#2669c0, footer 4 kolom persis). Perbaikan fungsional: filter Berita/Ekstra/Produk, kompetensi per jurusan, validasi wizard PPDB, scoring quiz, Auth validasi, chatbot FAB bulat, Kesehatan styling.
 - **Branch/PR:** `feat/fe-smkt-style`
 - **Penulis:** @moh-limo
 

@@ -23,7 +23,7 @@ export default function Berita() {
           <span className="inline-block w-fit text-[10px] font-bold uppercase tracking-widest text-brand bg-blue-badge rounded-full px-3 py-1.5">{feat.kat}</span>
           <p className="text-[11px] text-gray-400 mt-3">{feat.tgl}</p>
           <p className="font-head font-extrabold text-xl mt-1 leading-snug">{feat.judul}</p>
-          <p className="text-sm text-muted mt-3 leading-relaxed">Tim robotika sekolah berhasil meraih juara pertama dalam ajang National Tech Innovation Showcase 2026…</p>
+          <p className="text-sm text-body-text/80 mt-3 leading-relaxed">Tim robotika sekolah berhasil meraih juara pertama dalam ajang National Tech Innovation Showcase 2026…</p>
           <div className="mt-5"><BtnPrimer to={`/berita/${feat.id}`}>Baca Selengkapnya →</BtnPrimer></div>
         </div>
       </Card>
@@ -48,23 +48,23 @@ export default function Berita() {
             <div className="p-4">
               <p className="text-[10px] text-gray-400">{b.tgl}</p>
               <p className="font-head font-extrabold text-sm uppercase mt-1 leading-snug">{b.judul}</p>
-              <p className="text-[11px] text-muted mt-1.5 line-clamp-2">{b.ringkas}</p>
+              <p className="text-[11px] text-body-text/80 mt-1.5 line-clamp-2">{b.ringkas}</p>
               <a href={`#/berita/${b.id}`} className="text-[11px] text-brand font-bold mt-2 inline-block">Baca Selengkapnya →</a>
             </div>
           </Card>
         ))}
-        {grid.length === 0 && <p className="col-span-full text-center text-sm text-muted py-10">Tidak ada berita yang cocok dengan filter pencarian.</p>}
+        {grid.length === 0 && <p className="col-span-full text-center text-sm text-body-text/80 py-10">Tidak ada berita yang cocok dengan filter pencarian.</p>}
       </div>
 
       {/* PAGINATION */}
       <div className="flex justify-center gap-2 text-xs">
-        <button onClick={() => setPage(Math.max(1, page - 1))} className="w-9 h-9 rounded-full border border-line bg-white flex items-center justify-center">←</button>
+        <button onClick={() => setPage(Math.max(1, page - 1))} className="w-9 h-9 rounded-full border border-line-soft bg-white flex items-center justify-center">←</button>
         {[1, 2, 3].map((p) => (
-          <button key={p} onClick={() => setPage(p)} className={`w-9 h-9 rounded-full flex items-center justify-center font-bold ${page === p ? 'bg-brand text-white' : 'border border-line bg-white'}`}>{p}</button>
+          <button key={p} onClick={() => setPage(p)} className={`w-9 h-9 rounded-full flex items-center justify-center font-bold ${page === p ? 'bg-brand text-white' : 'border border-line-soft bg-white'}`}>{p}</button>
         ))}
-        <span className="w-9 h-9 rounded-full border border-line bg-white flex items-center justify-center text-gray-400">…</span>
-        <button onClick={() => setPage(10)} className={`w-9 h-9 rounded-full flex items-center justify-center font-bold ${page === 10 ? 'bg-brand text-white' : 'border border-line bg-white'}`}>10</button>
-        <button onClick={() => setPage(Math.min(10, page + 1))} className="w-9 h-9 rounded-full border border-line bg-white flex items-center justify-center">→</button>
+        <span className="w-9 h-9 rounded-full border border-line-soft bg-white flex items-center justify-center text-gray-400">…</span>
+        <button onClick={() => setPage(10)} className={`w-9 h-9 rounded-full flex items-center justify-center font-bold ${page === 10 ? 'bg-brand text-white' : 'border border-line-soft bg-white'}`}>10</button>
+        <button onClick={() => setPage(Math.min(10, page + 1))} className="w-9 h-9 rounded-full border border-line-soft bg-white flex items-center justify-center">→</button>
       </div>
     </div>
   );

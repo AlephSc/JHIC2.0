@@ -9,7 +9,7 @@ export default function Fasilitas() {
         <div>
           <Tag>FASILITAS SEKOLAH</Tag>
           <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Sarana Belajar yang Mendukung Kompetensi Siswa</h1>
-          <p className="text-sm text-muted mt-4 leading-relaxed">SMK Telekomunikasi Darul Ulum menyediakan berbagai fasilitas pembelajaran yang dirancang untuk menunjang praktik, kreativitas, kolaborasi, dan kesiapan siswa menghadapi dunia industri.</p>
+          <p className="text-sm text-body-text/80 mt-4 leading-relaxed">SMK Telekomunikasi Darul Ulum menyediakan berbagai fasilitas pembelajaran yang dirancang untuk menunjang praktik, kreativitas, kolaborasi, dan kesiapan siswa menghadapi dunia industri.</p>
           <div className="mt-5 flex gap-3">
             <BtnPrimer onClick={() => document.getElementById('fasilitas')?.scrollIntoView({ behavior: 'smooth' })}>Lihat Fasilitas ↓</BtnPrimer>
             <BtnOutline to="/ppdb">Hubungi Sekolah</BtnOutline>
@@ -25,7 +25,7 @@ export default function Fasilitas() {
             <Card key={f.t} className="p-6">
               <IconBox>{['🖥️', '🏛️', '🧪', '☀️'][i % 4]}</IconBox>
               <p className="font-head font-bold mt-4">{f.t}</p>
-              <p className="text-xs text-muted mt-2 leading-relaxed">{f.d}</p>
+              <p className="text-xs text-body-text/80 mt-2 leading-relaxed">{f.d}</p>
             </Card>
           ))}
         </div>

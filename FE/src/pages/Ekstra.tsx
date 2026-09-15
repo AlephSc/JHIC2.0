@@ -27,7 +27,7 @@ export default function Ekstra() {
         <div>
           <Tag>EKSTRAKURIKULER</Tag>
           <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Temukan Minat, Kembangkan Potensimu</h1>
-          <p className="text-sm text-muted mt-4 leading-relaxed">Ekstrakurikuler menjadi ruang bagi siswa untuk mengembangkan keterampilan, kreativitas, kerja sama, dan minat di luar kegiatan pembelajaran utama.</p>
+          <p className="text-sm text-body-text/80 mt-4 leading-relaxed">Ekstrakurikuler menjadi ruang bagi siswa untuk mengembangkan keterampilan, kreativitas, kerja sama, dan minat di luar kegiatan pembelajaran utama.</p>
           <div className="mt-5"><BtnPrimer onClick={() => document.getElementById('ekstra')?.scrollIntoView({ behavior: 'smooth' })}>Jelajahi Ekstrakurikuler ↓</BtnPrimer></div>
         </div>
         <PhotoBlob label="Foto siswa diskusi laptop" ratio="h-64" tone={0} />
@@ -41,13 +41,13 @@ export default function Ekstra() {
             <Card key={t} className="p-5 shadow-sm">
               <IconBox>{['🌐', '🤖', '🔧', '⌨️', '⚽', '🏸', '🏀', '🏹'][i % 8]}</IconBox>
               <p className="font-head font-bold text-sm mt-3">{t}</p>
-              <p className="text-[11px] text-muted mt-1.5 leading-relaxed">{DESC[t]}</p>
+              <p className="text-[11px] text-body-text/80 mt-1.5 leading-relaxed">{DESC[t]}</p>
             </Card>
           ))}
         </div>
       </section>
 
-      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+      <section className="bg-navy text-white rounded-[2.5rem] px-8 py-14 text-center">
         <h2 className="text-2xl font-extrabold">Temukan Ruang untuk Berkembang</h2>
         <p className="text-sm text-white/60 mt-2 max-w-xl mx-auto">Setiap siswa punya bakat unik. Ekstrakurikuler kami dirancang agar kamu menemukan panggung yang tepat.</p>
         <div className="mt-6 flex justify-center"><Photo label="Kolase ekstrakurikuler — Blend. Beyond. Believe." ratio="h-52 w-full max-w-2xl" tone={3} /></div>

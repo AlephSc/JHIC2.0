@@ -18,9 +18,9 @@ export default function Bkk() {
       <section className="bg-blue-soft/70 rounded-[2.5rem] p-8 grid gap-8 md:grid-cols-2 items-center">
         <div>
           <h1 className="text-4xl font-extrabold leading-[1.1]">BURSA KERJA KHUSUS</h1>
-          <p className="font-head font-bold text-brand mt-2">Langkah Awal Menuju <span className="text-navy-950">Dunia Kerja</span></p>
-          <p className="text-sm text-muted mt-3 leading-relaxed">BKK SMK Telekomunikasi Darul Ulum membantu siswa dan alumni menemukan peluang kerja, mengikuti proses rekrutmen, serta mempersiapkan diri menghadapi dunia profesional.</p>
-          <p className="text-[11px] text-navy-text font-bold mt-3">Lowongan Kerja • Rekrutmen • Persiapan Karier</p>
+          <p className="font-head font-bold text-brand mt-2">Langkah Awal Menuju <span className="text-navy">Dunia Kerja</span></p>
+          <p className="text-sm text-body-text/80 mt-3 leading-relaxed">BKK SMK Telekomunikasi Darul Ulum membantu siswa dan alumni menemukan peluang kerja, mengikuti proses rekrutmen, serta mempersiapkan diri menghadapi dunia profesional.</p>
+          <p className="text-[11px] text-navy font-bold mt-3">Lowongan Kerja • Rekrutmen • Persiapan Karier</p>
           <div className="mt-5 flex gap-3">
             <BtnPrimer onClick={() => document.getElementById('lowongan')?.scrollIntoView({ behavior: 'smooth' })}>Lihat Lowongan →</BtnPrimer>
             <BtnOutline to="/alumni">Kenali BKK</BtnOutline>
@@ -34,7 +34,7 @@ export default function Bkk() {
         {[['📋', 'Informasi Lowongan', 'Lowongan Kerja'], ['🤝', 'Rekrutmen & Penyaluran', 'Rekrutmen Perusahaan'], ['🎯', 'Persiapan Karier', 'Pembekalan Karier']].map(([ic, t, d]) => (
           <Card key={t} className="p-6 flex items-start gap-4">
             <IconBox>{ic}</IconBox>
-            <div><p className="font-head font-bold text-sm">{t}</p><p className="text-xs text-muted mt-1">{d}</p></div>
+            <div><p className="font-head font-bold text-sm">{t}</p><p className="text-xs text-body-text/80 mt-1">{d}</p></div>
           </Card>
         ))}
       </section>
@@ -57,8 +57,8 @@ export default function Bkk() {
                 <span className="text-[10px] text-red-700 bg-red-50 border border-red-200 rounded-full px-2.5 py-1 font-bold">Deadline: {l.deadline}</span>
               </div>
               <p className="font-head font-extrabold mt-3">{l.posisi}</p>
-              <p className="text-xs text-muted mt-1">{l.perush} • {l.lokasi}</p>
-              <p className="text-xs text-muted mt-2 leading-relaxed line-clamp-2">{l.deskripsi}</p>
+              <p className="text-xs text-body-text/80 mt-1">{l.perush} • {l.lokasi}</p>
+              <p className="text-xs text-body-text/80 mt-2 leading-relaxed line-clamp-2">{l.deskripsi}</p>
               <div className="flex gap-2 mt-4">
                 <BtnDark to={`/bkk/${l.id}`}>Detail</BtnDark>
               </div>
@@ -75,9 +75,9 @@ export default function Bkk() {
             {[['01', 'Cari Lowongan', 'Telusuri lowongan sesuai jurusan dan minatmu.'], ['02', 'Siapkan Berkas', 'CV, surat lamaran, dan portofolio terbaikmu.'], ['03', 'Kirim Lamaran', 'Kirim melalui email perusahaan atau langsung ke BKK.']].map(([n, t, d], i) => (
               <div key={n} className="flex gap-4">
                 <span className={`w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-sm shrink-0 ${i === 0 ? 'bg-brand text-white' : 'border-[1.5px] border-brand text-brand bg-white'}`}>{n}</span>
-                <div className="border-l border-line pl-4 pb-2">
+                <div className="border-l border-line-soft pl-4 pb-2">
                   <p className="font-head font-bold text-sm">{t}</p>
-                  <p className="text-xs text-muted mt-1">{d}</p>
+                  <p className="text-xs text-body-text/80 mt-1">{d}</p>
                 </div>
               </div>
             ))}
@@ -88,13 +88,13 @@ export default function Bkk() {
           <div className="mt-6 space-y-3">
             {AGENDA.map((a, i) => (
               <Card key={a.t} className="p-4 flex items-center gap-4">
-                <div className={`w-14 rounded-xl text-center py-2 ${i % 2 === 0 ? 'bg-brand text-white' : 'bg-blue-badge text-navy-text'}`}>
+                <div className={`w-14 rounded-xl text-center py-2 ${i % 2 === 0 ? 'bg-brand text-white' : 'bg-blue-badge text-navy'}`}>
                   <p className="text-[10px] font-bold uppercase">{a.tgl}</p>
                   <p className="text-lg font-extrabold leading-none">{a.hari}</p>
                 </div>
                 <div>
                   <p className="font-head font-bold text-sm">{a.t}</p>
-                  <p className="text-[11px] text-muted mt-0.5">📍 {a.tempat}</p>
+                  <p className="text-[11px] text-body-text/80 mt-0.5">📍 {a.tempat}</p>
                 </div>
               </Card>
             ))}
@@ -103,7 +103,7 @@ export default function Bkk() {
       </section>
 
       {/* CTA NAVY */}
-      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+      <section className="bg-navy text-white rounded-[2.5rem] px-8 py-14 text-center">
         <p className="text-3xl">🚀</p>
         <h2 className="text-2xl font-extrabold mt-2">BKK Siap Membantu Langkah Kariermu</h2>
         <p className="text-sm text-white/60 mt-2">Konsultasi gratis untuk siswa dan alumni — mulai dari CV sampai wawancara.</p>

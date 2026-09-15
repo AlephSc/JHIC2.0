@@ -11,7 +11,7 @@ export function CekPotensi() {
       <div>
         <Tag>Cek Potensi Kamu</Tag>
         <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Hai! Sudah Siap Mengenal Potensimu?</h1>
-        <p className="text-sm text-muted mt-4 leading-relaxed">Jawab beberapa pertanyaan singkat tentang hal yang kamu sukai dan cara kamu menyelesaikan sesuatu. Kami akan membantu memberikan rekomendasi jurusan yang paling cocok untukmu.</p>
+        <p className="text-sm text-body-text/80 mt-4 leading-relaxed">Jawab beberapa pertanyaan singkat tentang hal yang kamu sukai dan cara kamu menyelesaikan sesuatu. Kami akan membantu memberikan rekomendasi jurusan yang paling cocok untukmu.</p>
         <div className="mt-6 flex flex-wrap gap-3 items-center">
           <BtnPrimer to="/cek-potensi/quiz">Mulai Cek Potensi →</BtnPrimer>
           <a href="#/jurusan" className="text-brand font-bold text-sm">Lihat Semua Jurusan</a>
@@ -23,7 +23,7 @@ export function CekPotensi() {
           <Card key={j.kode} className={`p-6 ${i % 2 === 1 ? 'translate-y-6' : ''}`}>
             <IconBox>{['⌨️', '🖥️', '🎨', '🎬'][i]}</IconBox>
             <p className="font-head font-extrabold mt-3">{j.kode}</p>
-            <p className="text-xs text-muted mt-1 leading-relaxed">{j.nama}</p>
+            <p className="text-xs text-body-text/80 mt-1 leading-relaxed">{j.nama}</p>
           </Card>
         ))}
       </div>
@@ -47,24 +47,24 @@ export function Quiz() {
   if (i >= QUIZ.length) {
     sessionStorage.setItem('jhic2.quiz.jawab', JSON.stringify(jawab.map((x) => x ?? -1)));
     window.location.hash = '#/cek-potensi/hasil';
-    return <p className="text-center text-sm text-muted py-10">Menganalisis potensimu…</p>;
+    return <p className="text-center text-sm text-body-text/80 py-10">Menganalisis potensimu…</p>;
   }
   const q = QUIZ[i];
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="flex justify-between text-xs font-bold text-muted">
+      <div className="flex justify-between text-xs font-bold text-body-text/80">
         <span>Pertanyaan {i + 1} dari {QUIZ.length}</span><span>{pct}% Selesai</span>
       </div>
       <div className="h-2 bg-gray-100 rounded-full mt-2 overflow-hidden">
         <div className="h-full bg-brand rounded-full transition-all" style={{ width: `${pct}%` }} />
       </div>
-      <div className="bg-navy-950 text-white rounded-[2rem] p-8 mt-6">
-        <p className="text-[11px] font-bold uppercase tracking-widest text-sky-300">Pertanyaan {i + 1}</p>
+      <div className="bg-navy text-white rounded-[2rem] p-8 mt-6">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-[#7db3e8]">Pertanyaan {i + 1}</p>
         <h2 className="text-2xl font-extrabold mt-2 leading-snug">{q.q}</h2>
         <div className="grid gap-3 mt-6">
           {q.opsi.map((o, oi) => (
             <button key={o} onClick={() => { const n = [...jawab]; n[i] = oi; setJawab(n); }}
-              className={`text-left rounded-2xl px-5 py-4 text-sm font-semibold transition-colors ${jawab[i] === oi ? 'bg-brand text-white' : 'bg-navy-800 text-white/85 hover:bg-navy-800/70 ring-1 ring-white/10'}`}>
+              className={`text-left rounded-2xl px-5 py-4 text-sm font-semibold transition-colors ${jawab[i] === oi ? 'bg-brand text-white' : 'bg-[#1b2c46] text-white/85 hover:bg-[#1b2c46]/70 ring-1 ring-white/10'}`}>
               {String.fromCharCode(65 + oi)}. {o}
             </button>
           ))}
@@ -100,7 +100,7 @@ export function Hasil() {
       <Tag>HASIL CEK POTENSI</Tag>
       <h1 className="text-4xl font-extrabold mt-3">Rekomendasi Terbaikmu:<br /><span className="text-brand">{d.nama}</span></h1>
       <Card className="p-8 mt-8">
-        <p className="text-[11px] font-bold uppercase tracking-widest text-muted">Tingkat Kesesuaian</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest text-body-text/80">Tingkat Kesesuaian</p>
         <p className="text-5xl font-extrabold text-brand mt-2">{top.pct}%</p>
         <div className="h-3 bg-gray-100 rounded-full mt-4 overflow-hidden">
           <div className="h-full bg-brand rounded-full" style={{ width: `${top.pct}%` }} />
@@ -108,7 +108,7 @@ export function Hasil() {
         <div className="grid gap-3 sm:grid-cols-3 mt-6 text-left">
           {hasil.slice(1, 4).map((h) => (
             <div key={h.kode} className="bg-gray-100 rounded-xl p-3 text-xs">
-              <p className="font-bold">{h.kode}</p><p className="text-muted mt-0.5">{h.pct}%</p>
+              <p className="font-bold">{h.kode}</p><p className="text-body-text/80 mt-0.5">{h.pct}%</p>
             </div>
           ))}
         </div>
@@ -116,13 +116,13 @@ export function Hasil() {
       <div className="grid sm:grid-cols-2 gap-5 mt-6 text-left">
         <Card className="p-6">
           <p className="font-head font-bold text-sm">Kenapa {top.kode}?</p>
-          <ul className="mt-3 space-y-2 text-xs text-muted">
+          <ul className="mt-3 space-y-2 text-xs text-body-text/80">
             {d.alasan.map((a) => <li key={a} className="flex gap-2"><span className="text-brand font-bold">✓</span>{a}</li>)}
           </ul>
         </Card>
         <Card className="p-6">
           <p className="font-head font-bold text-sm">Yang Akan Dipelajari</p>
-          <ul className="mt-3 space-y-2 text-xs text-muted">
+          <ul className="mt-3 space-y-2 text-xs text-body-text/80">
             {d.pelajari.map((a) => <li key={a} className="flex gap-2"><span className="text-brand font-bold">▸</span>{a}</li>)}
           </ul>
         </Card>
