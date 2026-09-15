@@ -2,54 +2,74 @@ import { useParams } from 'react-router-dom';
 import { Card, Photo, Tag } from '../components/ui';
 import { BERITA } from '../data';
 
-// Replika Berita Lengkap.png
+// SMKT_Style BeritaDetail: breadcrumb + artikel + share ikon + sidebar 3 blok.
+const LAINNYA = [
+  { id: 'lab-robotika', kat: 'AKADEMIK', tgl: '05 Agustus 2026', judul: 'Peluncuran Lab Robotika Terbaru', thumb: 'Foto lab robotika' },
+  { id: 'seminar-nas', kat: 'SEMINAR', tgl: '01 Agustus 2026', judul: 'Seminar Nasional Teknologi Pendidikan', thumb: 'Foto seminar' },
+  { id: 'temu-alumni', kat: 'ALUMNI', tgl: '25 Juli 2026', judul: 'Temu Alumni Silaturahmi 2026', thumb: 'Foto temu alumni' },
+  { id: 'ppdb-gel2', kat: 'PENDAFTARAN', tgl: '20 Juli 2026', judul: 'Pendaftaran PPDB Gelombang 2 Dibuka', thumb: 'Foto pendaftaran' },
+  { id: 'kunjungan-industri', kat: 'KEGIATAN', tgl: '15 Juli 2026', judul: 'Kunjungan Industri ke Pabrik Otomotif', thumb: 'Foto kunjungan' },
+];
+
 export default function BeritaDetail() {
   const { id } = useParams();
   const b = BERITA.find((x) => x.id === id) ?? BERITA[0];
-  const lain = BERITA.filter((x) => x.id !== b.id).slice(0, 5);
   return (
     <div>
-      <p className="text-[11px] text-slate-500">Beranda / Berita & Informasi / {b.judul.slice(0, 28)}…</p>
+      <p className="text-[11px] text-gray-400">Beranda / Berita & Informasi / {b.judul.slice(0, 28)}…</p>
       <div className="grid gap-8 md:grid-cols-[2fr_1fr] mt-3">
         <article>
           <Tag>{b.kat}</Tag>
-          <h1 className="text-2xl font-extrabold mt-2">{b.judul}</h1>
-          <p className="text-[11px] text-slate-500 mt-2 border-l-2 border-sky-600 pl-2">{b.tgl} &nbsp;•&nbsp; Admin Sekolah &nbsp;•&nbsp; 3 menit membaca</p>
-          <Photo label="Foto dokumentasi berita" ratio="h-72" className="rounded-xl mt-4" tone={0} />
-          <div className="text-sm text-slate-700 mt-4 space-y-3">
-            <p><b>Jakarta, {b.tgl} –</b> Prestasi membanggakan kembali diraih oleh siswa-siswi SMK Telekomunikasi Darul Ulum dalam ajang Kompetisi Inovasi Teknologi Nasional (KITN) 2026. Tim inovator muda dari jurusan Rekayasa Perangkat Lunak berhasil menyabet Juara 1 kategori Pengembangan Aplikasi Tepat Guna.</p>
-            <p>Kompetisi bergengsi yang diikuti ratusan sekolah vokasi se-Indonesia ini menjadi ajang pembuktian kualitas pendidikan dan keterampilan praktis di lingkungan sekolah. Aplikasi yang dikembangkan berfokus pada solusi manajemen limbah elektronik berbasis komunitas.</p>
-            <h2 className="font-extrabold text-lg">Inovasi yang Menginspirasi</h2>
-            <p>Proyek aplikasi bernama "E-Waste Connect" memukau juri dengan antarmuka intuitif dan integrasi sistem pemetaan lokasi daur ulang real-time. Proses pengembangan memakan waktu tiga bulan dengan bimbingan mentor industri mitra sekolah.</p>
-            <blockquote className="border-l-4 border-sky-600 pl-4 font-bold">"Keberhasilan ini adalah bukti nyata dedikasi siswa dan dukungan penuh ekosistem pendidikan di SMK Telekomunikasi Darul Ulum yang selalu mendorong pemecahan masalah dunia nyata."</blockquote>
+          <h1 className="text-3xl font-extrabold mt-3 leading-[1.15]">{b.judul}</h1>
+          <p className="text-[11px] text-muted mt-3 border-l-4 border-brand pl-3">{b.tgl} &nbsp;•&nbsp; Admin Sekolah &nbsp;•&nbsp; 3 menit membaca</p>
+          <Photo label="Foto dokumentasi berita" ratio="h-72" className="mt-5" tone={0} />
+          <div className="text-sm text-navy-text leading-relaxed space-y-4 mt-5">
+            <p>Jakarta — Tim robotika SMK Telekomunikasi Darul Ulum kembali membanggakan nama sekolah dengan meraih juara kompetisi teknologi nasional. Prestasi ini menjadi bukti nyata kurikulum berbasis industri yang diterapkan sekolah.</p>
+            <h2 className="text-xl font-extrabold pt-2">Inovasi yang Menginspirasi</h2>
+            <p>Proyek <b>E-Waste Connect</b> — aplikasi pemilahan dan pengolahan limbah elektronik — dinilai juri paling aplikatif dan berdampak bagi lingkungan. Tim beranggotakan siswa RPL dan TKJ yang dibimbing guru produktif selama tiga bulan.</p>
+            <blockquote className="border-l-4 border-brand bg-blue-badge/40 rounded-r-xl p-4 italic text-navy-text">"Kami tidak hanya belajar teori, tapi benar-benar menyelesaikan masalah nyata masyarakat lewat teknologi." — Ketua Tim</blockquote>
+            <p>Kejuaraan ini diikuti 120 tim dari seluruh Indonesia. Sekolah berharap capaian ini memotivasi adik kelas untuk terus berkarya di bidang teknologi.</p>
           </div>
-          <div className="flex justify-between items-center mt-6 border-t pt-4">
-            <p className="text-xs font-bold">Bagikan Berita:</p>
-            <a href="#/berita" className="text-xs border border-sky-700 text-sky-700 rounded-lg px-4 py-2 font-bold">← Kembali ke Berita</a>
+          <div className="flex items-center gap-2 mt-6 text-xs">
+            <span className="font-bold text-muted">Bagikan Berita:</span>
+            <span className="w-8 h-8 rounded-full bg-blue-badge text-brand flex items-center justify-center cursor-pointer">↗</span>
+            <span className="w-8 h-8 rounded-full bg-blue-badge text-brand flex items-center justify-center cursor-pointer">🔗</span>
           </div>
+          <a href="#/berita" className="inline-block mt-4 border-[1.5px] border-brand text-brand text-sm font-bold px-6 py-2.5 rounded-xl hover:bg-blue-badge">← Kembali ke Berita</a>
         </article>
         <aside className="space-y-6">
-          <div>
-            <div className="flex justify-between items-center border-b-2 border-slate-900 pb-1"><p className="font-bold text-sm">Berita Lainnya</p><a href="#/berita" className="text-[11px] text-sky-700">Lihat Semua →</a></div>
-            {lain.map((x, i) => (
-              <a key={x.id} href={`#/berita/${x.id}`} className="flex gap-2 py-3 border-b">
-                <Photo label={x.judul} ratio="h-14 w-20" className="rounded shrink-0" tone={i} />
-                <div><p className="text-[10px] text-sky-700 font-bold">{x.kat}</p><p className="text-xs font-bold">{x.judul}</p><p className="text-[10px] text-slate-500">{x.tgl}</p></div>
+          <Card className="p-5">
+            <p className="font-head font-bold text-sm">Berita Lainnya</p>
+            {LAINNYA.map((x) => (
+              <a key={x.id} href={`#/berita/${x.id}`} className="flex gap-3 py-3 border-b last:border-0 group">
+                <Photo label={x.thumb} ratio="h-14 w-16" tone={1} />
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-brand">{x.kat}</p>
+                  <p className="text-[11px] font-bold leading-snug group-hover:text-brand">{x.judul}</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">{x.tgl}</p>
+                </div>
               </a>
             ))}
-          </div>
-          <div>
-            <p className="font-bold text-sm border-b-2 border-slate-900 pb-1">Paling Banyak Dibaca</p>
-            {[['Panduan Lengkap Pendaftaran Jalur Prestasi 2026', '2.4k pembaca'], ['Profil Lulusan SMK Telkom yang Sukses Global', '1.8k pembaca'], ['Fasilitas Lab Cloud Computing Terbaru TKJ', '1.5k pembaca']].map(([t, s], i) => (
-              <p key={t} className="py-2 border-b text-xs"><span className="text-sky-200 font-extrabold mr-2">0{i + 1}</span><b>{t}</b><br /><span className="text-slate-500 ml-6">{s}</span></p>
+            <a href="#/berita" className="text-xs font-bold text-brand mt-2 inline-block">Lihat Semua →</a>
+          </Card>
+          <Card className="p-5">
+            <p className="font-head font-bold text-sm">Paling Banyak Dibaca</p>
+            {[['2.4k', 'Siswa Raih Juara Kompetisi Teknologi Nasional'], ['1.8k', 'Perayaan Hari Kemerdekaan dan Gelar Karya'], ['1.5k', 'Pendaftaran PPDB Gelombang 2 Dibuka']].map(([n, t], i) => (
+              <div key={t} className="flex gap-3 py-3 border-b last:border-0">
+                <span className="text-2xl font-extrabold text-line">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <p className="text-[11px] font-bold leading-snug">{t}</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">{n} pembaca</p>
+                </div>
+              </div>
             ))}
-          </div>
-          <div>
-            <p className="font-bold text-sm border-b-2 border-slate-900 pb-1">Jelajahi Kategori</p>
-            <div className="flex flex-wrap gap-2 mt-2 text-[11px]">
-              {['Prestasi', 'Kegiatan Sekolah', 'Pengumuman', 'Karya & Inovasi', 'Artikel & Edukasi', 'Alumni'].map((c) => <span key={c} className="bg-stone-100 rounded-full px-3 py-1">{c}</span>)}
-            </div>
-          </div>
+          </Card>
+          <Card className="p-5">
+            <p className="font-head font-bold text-sm">Jelajahi Kategori</p>
+            {['Prestasi', 'Kegiatan Sekolah', 'Pengumuman', 'Karya & Inovasi', 'Artikel & Edukasi', 'Alumni'].map((k) => (
+              <a key={k} href="#/berita" className="flex justify-between items-center py-2.5 border-b last:border-0 text-xs font-semibold hover:text-brand"><span>{k}</span><span className="text-gray-300">›</span></a>
+            ))}
+          </Card>
         </aside>
       </div>
     </div>

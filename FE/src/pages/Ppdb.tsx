@@ -1,33 +1,56 @@
-import { BtnPrimer, Photo } from '../components/ui';
+import { BtnOutline, BtnPrimer, Card, IconBox, Photo, PhotoBlob, Tag } from '../components/ui';
+import { JURUSAN } from '../data';
 
-// Replika PPDB Page.png (landing) — hero + info pendaftaran.
+// SMKT_Style PPDB Page: hero 2 kolom + kartu info jalur + alur langkah.
 export default function Ppdb() {
   return (
-    <div className="space-y-10">
-      <section className="grid gap-6 md:grid-cols-2 items-center">
+    <div className="space-y-16 -mt-2">
+      <section className="grid gap-8 md:grid-cols-2 items-center">
         <div>
-          <p className="text-[11px] font-bold text-sky-700 tracking-widest">PENERIMAAN PESERTA DIDIK BARU</p>
-          <h1 className="text-4xl font-extrabold leading-tight">Mulai langkahmu bersama <span className="text-sky-700">PPDB 2026/2027</span></h1>
-          <p className="text-sm text-slate-600 mt-3">Bergabunglah dengan SMK Telekomunikasi Darul Ulum untuk menjadi generasi yang kompeten, berkarakter, dan siap menghadapi dunia industri digital.</p>
-          <div className="mt-4 flex gap-2">
-            <BtnPrimer to="/ppdb/daftar">Mulai Pendaftaran →</BtnPrimer>
-            <a href="#/ppdb" className="border text-sm font-bold px-5 py-2.5 rounded-full">Lihat Persyaratan</a>
+          <Tag>Penerimaan Peserta Didik Baru</Tag>
+          <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Mulai langkahmu bersama <span className="text-brand">PPDB 2026/2027</span></h1>
+          <p className="text-sm text-muted mt-4 leading-relaxed">Bergabunglah dengan SMK Telekomunikasi Darul Ulum untuk menjadi generasi yang kompeten, berkarakter, dan siap menghadapi dunia industri digital.</p>
+          <div className="mt-6 flex gap-3">
+            <BtnPrimer to="/register">Mulai Pendaftaran →</BtnPrimer>
+            <BtnOutline onClick={() => document.getElementById('syarat')?.scrollIntoView({ behavior: 'smooth' })}>Lihat Persyaratan</BtnOutline>
           </div>
         </div>
-        <Photo label="Foto siswa memegang logo sekolah" ratio="h-80" className="rounded-3xl" tone={0} />
+        <PhotoBlob label="Foto siswa baru" ratio="h-64" tone={0} />
       </section>
-      <section className="bg-sky-50 rounded-3xl p-6 text-center">
-        <h2 className="font-extrabold text-lg">Informasi Pendaftaran</h2>
-        <p className="text-xs text-slate-500">Detail penting mengenai proses penerimaan peserta didik baru tahun ini.</p>
-        <div className="grid sm:grid-cols-4 gap-3 mt-4 text-xs">
-          {[['Jalur Prestasi', 'Rapor + sertifikat'], ['Jalur Reguler', 'Tes + wawancara'], ['Beasiswa', 'Yatim & berprestasi'], ['Kuota', '4 jurusan × 2 kelas']].map(([t, d]) => (
-            <div key={t} className="bg-white rounded-2xl border p-4"><p className="font-bold">{t}</p><p className="text-slate-500 mt-1">{d}</p></div>
+
+      <section id="syarat">
+        <h2 className="text-2xl font-extrabold text-center">Informasi Pendaftaran</h2>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-8">
+          {[['🏆', 'Jalur Prestasi', 'Bagi siswa dengan prestasi akademik/non-akademik.'], ['📝', 'Jalur Reguler', 'Seleksi administrasi dan tes kemampuan dasar.'], ['🎓', 'Beasiswa', 'Program beasiswa bagi siswa berprestasi berkarakter.'], ['👥', 'Kuota Kelas', 'Kuota terbatas per jurusan, daftar lebih awal.']].map(([ic, t, d]) => (
+            <Card key={t} className="p-6">
+              <IconBox>{ic}</IconBox>
+              <p className="font-head font-bold mt-4">{t}</p>
+              <p className="text-xs text-muted mt-1.5 leading-relaxed">{d}</p>
+            </Card>
           ))}
         </div>
-        <div className="mt-4 flex justify-center gap-2 text-sm">
-          <a href="#/login" className="border rounded-full px-4 py-2 font-bold">Masuk Akun</a>
-          <a href="#/ppdb/dashboard" className="border rounded-full px-4 py-2 font-bold">Cek Status →</a>
+      </section>
+
+      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+        <h2 className="text-2xl font-extrabold">Alur Pendaftaran Singkat</h2>
+        <div className="grid gap-4 sm:grid-cols-4 mt-8 text-sm">
+          {[['01', 'Buat Akun'], ['02', 'Isi Data Diri'], ['03', 'Upload Berkas'], ['04', 'Cek Status']].map(([n, t]) => (
+            <div key={n} className="bg-navy-800 rounded-2xl p-5">
+              <p className="text-2xl font-extrabold text-sky-400">{n}</p>
+              <p className="font-bold mt-2">{t}</p>
+            </div>
+          ))}
         </div>
+        <div className="mt-8 flex justify-center"><BtnPrimer to="/register">Daftar Sekarang →</BtnPrimer></div>
+      </section>
+
+      <section className="grid gap-5 sm:grid-cols-4">
+        {JURUSAN.map((j, i) => (
+          <Card key={j.kode} className="overflow-hidden">
+            <Photo label={j.nama} ratio="h-28" tone={i} className="rounded-none" />
+            <p className="font-head font-bold text-sm p-4">{j.kode}</p>
+          </Card>
+        ))}
       </section>
     </div>
   );

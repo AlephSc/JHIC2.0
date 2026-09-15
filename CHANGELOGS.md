@@ -25,6 +25,13 @@
 
 ## Riwayat
 
+## [2026-09-15] — Redesign FE sesuai SMKT_Style guide
+- **Kategori:** Changed
+- **Area:** FE / Session
+- **Deskripsi:** Terapkan Skills/SMKT_Style.md "Modern Institutional Navy" ke 25 route: token warna krem/navy/biru, font Plus Jakarta Sans+Inter, navbar pill dropdown, blob dekoratif, CTA banner navy. Perbaikan fungsional: filter Berita/Ekstra/Produk, kompetensi per jurusan, validasi wizard PPDB, scoring quiz, Auth validasi.
+- **Branch/PR:** `feat/fe-smkt-style`
+- **Penulis:** @moh-limo
+
 ## [2026-09-12] — Replika Figma penuh (25 route)
 - **Kategori:** Added
 - **Area:** FE / Session

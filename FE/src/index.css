@@ -1,10 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* SMKT_Style — Modern Institutional Navy (Skills/SMKT_Style.md) */
 :root {
-  --smk-navy: #0a1931;
-  --smk-blue: #0b5ed7;
+  --navy-950: #0a1628;
+  --navy-900: #101e33;
+  --navy-800: #1b2c46;
+  --navy-text: #0f172a;
+  --blue-primary: #2563eb;
+  --blue-hover: #1d4ed8;
+  --blue-soft-bg: #dce9fb;
+  --blue-badge-bg: #e8f0fe;
+  --cream-bg: #faf6f0;
+  --gray-100: #f1f5f9;
+  --gray-border: #e2e8f0;
+  --gray-muted: #64748b;
+  --gray-500: #94a3b8;
+  --success-bg: #d1fae5;
+  --success-text: #059669;
+}
+
+@theme {
+  --color-navy-950: #0a1628;
+  --color-navy-900: #101e33;
+  --color-navy-800: #1b2c46;
+  --color-navy-text: #0f172a;
+  --color-brand: #2563eb;
+  --color-brand-hover: #1d4ed8;
+  --color-blue-soft: #dce9fb;
+  --color-blue-badge: #e8f0fe;
+  --color-cream: #faf6f0;
+  --color-line: #e2e8f0;
+  --color-muted: #64748b;
+  --font-head: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
+  color: var(--navy-text);
+  background: var(--cream-bg);
 }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+}
+
+/* Blob dekoratif — maksimal 1-2 per section, di belakang konten */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--blue-soft-bg);
+  opacity: 0.55;
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Foto rounded besar sesuai style guide */
+.img-frame {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Scrollbar halus */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }

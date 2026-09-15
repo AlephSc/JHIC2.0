@@ -1,84 +1,115 @@
 import { useState } from 'react';
-import { BtnGaris, BtnPrimer, Card, Photo, Tag } from '../components/ui';
+import { BtnOutline, BtnPrimer, Card, IconBox, Photo, PhotoBlob, Tag } from '../components/ui';
 import { JURUSAN, RPL_KOMPETENSI } from '../data';
 
-// Replika Jurusan.png: hero → cek potensi navy → tab jurusan → kompetensi → fasilitas → CTA.
+// SMKT_Style Jurusan: hero 2 kolom + panel navy CTA + tab pill + grid kompetensi + CTA navy penutup.
 const TABS = ['RPL', 'DKV', 'TKJ', 'PF'];
+const KOMPETENSI: Record<string, Array<{ t: string; d: string }>> = {
+  RPL: RPL_KOMPETENSI,
+  DKV: [
+    { t: 'Desain Grafis Dasar', d: 'Komposisi, tipografi, dan teori warna untuk kebutuhan media cetak maupun digital.' },
+    { t: 'Ilustrasi Digital', d: 'Menggambar digital dan pengolahan vektor untuk media kampanye dan konten kreatif.' },
+    { t: 'UI/UX Design', d: 'Merancang antarmuka produk digital yang intuitif dan estetis.' },
+    { t: 'Photography & Editing', d: 'Teknis foto produk dan editing untuk kebutuhan branding.' },
+    { t: 'Motion & Video Grafis', d: 'Animasi 2D dan motion grafis untuk media promosi.' },
+    { t: 'Branding Project', d: 'Membangun identitas visual brand dari riset hingga guideline.' },
+  ],
+  TKJ: [
+    { t: 'Jaringan Dasar', d: 'Instalasi dan konfigurasi jaringan LAN/WLAN standar industri.' },
+    { t: 'Administrasi Server', d: 'Manajemen server Linux/Windows untuk layanan jaringan.' },
+    { t: 'Mikrotik & Router', d: 'Konfigurasi routing, firewall, dan bandwidth management.' },
+    { t: 'Keamanan Jaringan', d: 'Praktik hardening dan monitoring keamanan infrastruktur.' },
+    { t: 'Cloud & Virtualisasi', d: 'Dasar cloud computing dan virtualisasi layanan.' },
+    { t: 'Proyek Infrastruktur', d: 'Implementasi jaringan nyata skala institusi.' },
+  ],
+  PF: [
+    { t: 'Sinematografi', d: 'Teknis kamera, pencahayaan, dan komposisi bidikan film.' },
+    { t: 'Penulisan Skenario', d: 'Struktur cerita dan naskah produksi film pendek.' },
+    { t: 'Produksi Film', d: 'Alur produksi lengkap dari pre sampai post-production.' },
+    { t: 'Editing & Color', d: 'Editing non-linear dan color grading profesional.' },
+    { t: 'Audio Production', d: 'Rekaman, sound design, dan mixing audio.' },
+    { t: 'Proyek Film Pendek', d: 'Produksi film pendek festival dari tim siswa.' },
+  ],
+};
 
 export default function Jurusan() {
   const [tab, setTab] = useState('RPL');
   const aktif = JURUSAN.find((j) => j.kode === tab)!;
   return (
-    <div className="space-y-12">
-      <section className="grid gap-6 md:grid-cols-2 items-center">
+    <div className="space-y-16">
+      {/* HERO */}
+      <section className="grid gap-8 md:grid-cols-2 items-center">
         <div>
-          <h1 className="text-3xl font-extrabold">Temukan Jurusan yang Sesuai dengan Potensimu</h1>
-          <p className="text-sm text-slate-600 mt-3">Kurikulum berbasis industri, fasilitas modern, dan pendampingan karakter. Siap mencetak lulusan yang kreatif, inovatif, dan siap kerja.</p>
-          <div className="mt-4"><BtnPrimer to="/cek-potensi">Jelajahi Program Keahlian</BtnPrimer></div>
+          <Tag>PROGRAM KEAHLIAN</Tag>
+          <h1 className="text-4xl font-extrabold mt-3 leading-[1.1]">Temukan Jurusan yang Sesuai dengan Potensimu</h1>
+          <p className="text-sm text-muted mt-4 leading-relaxed">Kurikulum berbasis industri, fasilitas modern, dan pendampingan karakter. Siap mencetak lulusan yang kreatif, inovatif, dan siap kerja.</p>
+          <div className="mt-5"><BtnPrimer to="/cek-potensi">Jelajahi Program Keahlian →</BtnPrimer></div>
         </div>
-        <div className="bg-sky-100 rounded-[2rem] h-56" />
+        <PhotoBlob label="Foto siswa praktik" ratio="h-64" tone={1} />
       </section>
 
-      <section className="bg-slate-900 text-white rounded-3xl p-6 grid gap-6 md:grid-cols-2">
+      {/* PANEL NAVY CEK POTENSI */}
+      <section className="bg-navy-950 text-white rounded-[2.5rem] p-8 grid gap-6 md:grid-cols-[2fr_1fr] items-center">
         <div>
-          <p className="text-[11px] opacity-70">BINGUNG PILIH JURUSAN?</p>
-          <h2 className="font-extrabold text-lg">Temukan Jurusan yang Cocok dengan Potensimu</h2>
-          <p className="text-xs opacity-70 mt-2">Jawab beberapa pertanyaan singkat tentang minat, cara berpikir, dan aktivitas yang kamu sukai. Kami akan memberikan rekomendasi program keahlian yang paling sesuai untukmu.</p>
-          <div className="mt-3 flex gap-2 items-center">
-            <BtnPrimer to="/cek-potensi">Cek Potensi Kamu →</BtnPrimer>
-            <span className="text-[11px] opacity-60">Hanya membutuhkan sekitar 2-3 menit</span>
-          </div>
-          <p className="text-[11px] opacity-50 mt-6">01 — Jawab Pertanyaan &nbsp;&nbsp; 02 — Analisis Potensi &nbsp;&nbsp; 03 — Dapatkan Rekomendasi</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-300">Bingung Pilih Jurusan?</p>
+          <h2 className="text-2xl font-extrabold mt-2">Cek Potensi Kamu →</h2>
+          <p className="text-sm text-white/60 mt-2">Jawab 8 pertanyaan singkat, dapatkan rekomendasi jurusan yang paling cocok. Hanya membutuhkan sekitar 2-3 menit.</p>
         </div>
-        <div className="grid grid-cols-2 gap-3 text-center text-[11px]">
-          {[['PF', 'Perfilman'], ['TKJ', 'Teknik Komputer & Jaringan'], ['RPL', 'Rekayasa Perangkat Lunak'], ['DKV', 'Desain Komunikasi Visual']].map(([k, n]) => (
-            <div key={k} className="bg-white/10 rounded-xl p-4"><p className="font-extrabold">{k}</p><p className="opacity-70">{n}</p></div>
+        <div className="flex gap-3 text-[11px]">
+          {['01 Jawab Pertanyaan', '02 Analisis Potensi', '03 Dapatkan Rekomendasi'].map((s) => (
+            <span key={s} className="bg-navy-800 rounded-xl px-3 py-2.5 font-bold">{s}</span>
           ))}
         </div>
       </section>
 
+      {/* TAB + KOMPETENSI */}
       <section>
-        <div className="flex flex-wrap justify-center gap-2 text-xs">
+        <div className="flex flex-wrap justify-center gap-2">
           {TABS.map((t) => (
-            <button key={t} onClick={() => setTab(t)} className={`px-4 py-1.5 rounded-full border font-bold ${tab === t ? 'bg-slate-900 text-white' : ''}`}>
-              {t === 'RPL' ? 'Rekayasa Perangkat Lunak' : t === 'DKV' ? 'Desain Komunikasi Visual' : t === 'TKJ' ? 'Teknik Komputer & Jaringan' : 'Perfilman'}
+            <button key={t} onClick={() => setTab(t)} className={`px-5 py-2 rounded-full text-xs font-bold transition-colors ${tab === t ? 'bg-navy-950 text-white' : 'border border-line bg-white text-navy-text hover:border-brand'}`}>
+              {JURUSAN.find((j) => j.kode === t)?.nama ?? t}
             </button>
           ))}
         </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2 items-start">
+        <div className="grid gap-6 md:grid-cols-[1fr_2fr] items-start mt-8">
           <div>
-            <h2 className="text-xl font-extrabold">{aktif.nama} ({aktif.kode})</h2>
-            <p className="text-sm text-slate-600 mt-2">{aktif.desc}</p>
+            <h3 className="text-xl font-extrabold">{aktif.nama}</h3>
+            <p className="text-xs text-muted mt-2 leading-relaxed">{aktif.desc}</p>
+            <div className="mt-4 bg-blue-soft/60 border-l-4 border-brand rounded-r-xl p-4 text-xs text-navy-text"><b>Fokus:</b> {aktif.desc.split(':')[1] ?? aktif.desc}</div>
           </div>
-          <Photo label={`Foto kegiatan ${aktif.kode}`} ratio="h-44" className="rounded-2xl" tone={1} />
-        </div>
-        <p className="text-center text-xs font-bold mt-8">Kompetensi yang Dipelajari</p>
-        <div className="grid gap-3 sm:grid-cols-3 mt-3">
-          {RPL_KOMPETENSI.map((k) => (
-            <Card key={k.t} className="p-4"><p className="font-bold text-sm">{k.t}</p><p className="text-xs text-slate-600 mt-1">{k.d}</p></Card>
-          ))}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {KOMPETENSI[tab].map((k) => (
+              <Card key={k.t} className="p-5">
+                <IconBox>◆</IconBox>
+                <p className="font-head font-bold text-sm mt-3">{k.t}</p>
+                <p className="text-xs text-muted mt-1.5 leading-relaxed">{k.d}</p>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* FASILITAS STANDAR INDUSTRI */}
       <section>
-        <h2 className="text-center font-extrabold">Fasilitas Standar Industri</h2>
-        <p className="text-center text-xs text-slate-500">Kami menyediakan lingkungan belajar yang mensimulasikan dunia kerja sesungguhnya.</p>
-        <div className="grid gap-4 sm:grid-cols-3 mt-4">
-          {['Laboratorium Komputer', 'Studio Kreatif', 'Lab Jaringan & Server'].map((f, i) => (
-            <Card key={f} className="overflow-hidden">
-              <Photo label={f} ratio="h-32" tone={i} />
-              <div className="p-3"><p className="font-bold text-sm">{f}</p></div>
+        <h2 className="text-center text-2xl font-extrabold">Fasilitas Standar Industri</h2>
+        <div className="grid gap-5 md:grid-cols-3 mt-8">
+          {[['💻', 'Laboratorium Komputer', 'Dilengkapi PC spek tinggi untuk praktik programming dan desain.'], ['🎬', 'Studio Kreatif', 'Area khusus diskusi dan produksi konten kreatif siswa.'], ['🖥️', 'Lab Jaringan & Server', 'Infrastruktur server real untuk praktik administrasi jaringan.']].map(([ic, t, d]) => (
+            <Card key={t} className="p-6">
+              <IconBox>{ic}</IconBox>
+              <p className="font-head font-bold mt-3">{t}</p>
+              <p className="text-xs text-muted mt-1.5">{d}</p>
             </Card>
           ))}
         </div>
       </section>
 
-      <section className="bg-slate-900 text-white rounded-3xl p-8 text-center">
-        <h2 className="font-extrabold text-lg">Sudah Menemukan Jurusan yang Cocok?</h2>
-        <p className="text-xs opacity-70">Mari bangun masa depan gemilang bersama SMK Telekomunikasi Darul Ulum. Kuota pendaftaran terbatas.</p>
-        <div className="mt-4 flex justify-center gap-2">
-          <BtnPrimer to="/ppdb">Daftar PPDB Sekarang</BtnPrimer>
-          <BtnGaris to="/cek-potensi">Konsultasi Jurusan</BtnGaris>
+      {/* CTA NAVY */}
+      <section className="bg-navy-950 text-white rounded-[2.5rem] px-8 py-14 text-center">
+        <h2 className="text-2xl font-extrabold">Sudah Menemukan Jurusan yang Cocok?</h2>
+        <p className="text-sm text-white/60 mt-2">Waktunya ambil langkah pertama menuju masa depanmu.</p>
+        <div className="mt-6 flex flex-wrap gap-3 justify-center">
+          <BtnPrimer to="/ppdb">Daftar PPDB Sekarang →</BtnPrimer>
+          <BtnOutline light to="/cek-potensi">Konsultasi Jurusan</BtnOutline>
         </div>
       </section>
     </div>
